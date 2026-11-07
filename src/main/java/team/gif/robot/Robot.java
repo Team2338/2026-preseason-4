@@ -7,6 +7,9 @@ package team.gif.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import team.gif.robot.commands.ArcadeDrive;
+import team.gif.robot.subsystems.DriveTrainSub;
+import team.gif.robot.subsystems.TalonCollect;
 import team.gif.robot.subsystems.drivers.Pigeon2_0;
 
 
@@ -22,6 +25,9 @@ public class Robot extends TimedRobot {
     public static OI oi;
 
     public static Pigeon2_0 pigeon;
+    public static DriveTrainSub drivetrain;
+
+    public static TalonCollect collect;
 
 
     public static UI ui;
@@ -40,6 +46,12 @@ public class Robot extends TimedRobot {
         robotContainer = new RobotContainer();
 
         pigeon = new Pigeon2_0(RobotMap.PIGEON_ID);
+
+
+        drivetrain = new DriveTrainSub();
+        drivetrain.setDefaultCommand(new ArcadeDrive());
+
+        collect = new TalonCollect();
 
 
         //These should be at or near the bottom
